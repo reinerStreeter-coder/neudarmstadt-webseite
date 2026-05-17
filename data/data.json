@@ -1,0 +1,128 @@
+{
+  "site": {
+    "title": "Neudarmstadt",
+    "subtitle": "Second Life Stadt",
+    "welcome": "Willkommen in Neudarmstadt – einer lebendigen Second-Life-Stadt mit Events, Galerie, Vermietung und engagiertem Stadtteam.",
+    "heroImage": "assets/landing.png",
+    "logo": "assets/logo.png"
+  },
+  "cards": [
+    {
+      "title": "Events",
+      "text": "Alle Veranstaltungen und Termine in Neudarmstadt.",
+      "image": "assets/landing.png",
+      "link": "events.html"
+    },
+    {
+      "title": "Vermietung",
+      "text": "Informationen zu Häusern, Wohnungen und Ladenflächen.",
+      "image": "assets/landing.png",
+      "link": "vermietung.html"
+    },
+    {
+      "title": "Galerie",
+      "text": "Eindrücke, Fotos und besondere Momente aus der Stadt.",
+      "image": "assets/landing.png",
+      "link": "galerie.html"
+    }
+  ],
+  "events": [
+    {
+      "date": "2026-05-20",
+      "time": "20:00",
+      "title": "Stadtabend in Neudarmstadt",
+      "description": "Gemütlicher Abend mit Musik, Gesprächen und Gästen.",
+      "image": "assets/landing.png"
+    }
+  ],
+  "rentals": [
+    {
+      "title": "Ladenfläche im Zentrum",
+      "price": "Auf Anfrage",
+      "description": "Schöne Ladenfläche in zentraler Lage von Neudarmstadt.",
+      "image": "assets/landing.png"
+    }
+  ],
+  "gallery": [
+    {
+      "title": "Neudarmstadt bei Sonnenuntergang",
+      "description": "Blick auf den Marktplatz und den Turm.",
+      "image": "assets/landing.png"
+    }
+  ],
+  "people": [
+    {
+      "name": "Novadien",
+      "role": "Bürgermeister",
+      "description": "Novadien ist der Herausgeber des Second-Life-Magazins „Sammelsurium“ und der „Neudarmstädter Zeitung“.",
+      "image": "assets/novadien.png",
+      "group": "mayor",
+      "uuid": "19142569-ce4a-44f0-a722-9be5148ee5a7",
+      "online": false,
+      "lastSeen": ""
+    },
+    {
+      "name": "Atriata",
+      "role": "Bürgermeisterin",
+      "description": "Atriata ist Mitherausgeberin des Second-Life-Magazins „Sammelsurium“ und der „Neudarmstädter Zeitung“. Des Weiteren ist sie für die Dekoration in Neudarmstadt verantwortlich.",
+      "image": "assets/atriata.png",
+      "group": "mayor",
+      "uuid": "2547bfa8-8c31-409d-ac6b-66b7b87ee9d8",
+      "online": false,
+      "lastSeen": ""
+    },
+    {
+      "name": "Jayden Mercury",
+      "role": "Stadtrat",
+      "description": "Jaydon ist ein kreativer Second-Life-Künstler, Sim- und Magazinbesitzer sowie mehrfach ausgezeichneter Storyteller, der virtuelle Welten, Events und kreative Projekte erschafft.",
+      "image": "assets/jaydon.png",
+      "group": "council",
+      "uuid": "70b14dcd-628b-4d00-b6cc-7a3d5e1fe78c",
+      "online": false,
+      "lastSeen": ""
+    },
+    {
+      "name": "Katarina Ballinger",
+      "role": "Stadträtin",
+      "description": "Katarina Ballinger ist Modedesignerin des Labels „K&R Design“, das sie gemeinsam mit ihrem Partner Reiner Streeter betreibt.",
+      "image": "assets/kati.png",
+      "group": "council",
+      "uuid": "0962da00-9827-4d47-9b80-9aa3a7dbde25",
+      "online": false,
+      "lastSeen": ""
+    },
+    {
+      "name": "Reiner Streeter",
+      "role": "Stadtrat",
+      "description": "Reiner Streeter ist Modedesigner des Labels „K&R Design“, das er gemeinsam mit seiner Partnerin Katarina Ballinger betreibt.",
+      "image": "assets/reiner.png",
+      "group": "council",
+      "uuid": "5258e13e-54b7-4e8a-bcf2-1f175eae95cb",
+      "online": false,
+      "lastSeen": ""
+    },
+    {
+      "name": "Nani Martinek-Uggla",
+      "role": "Stadträtin",
+      "description": "Nani Martinek-Uggla betreibt ein Geschäft für stilvolle Gartenartikel und alles, was einen schönen Garten ausmacht.",
+      "image": "assets/nani.png",
+      "group": "council",
+      "uuid": "21b335c9-f609-400a-acae-ecb5469eaf83",
+      "online": false,
+      "lastSeen": ""
+    }
+  ],
+  "statusSecret": "neudarmstadt-status-2026",
+  "messages": [],
+  "auth": {
+    "username": "admin",
+    "password": "neudarmstadt"
+  },
+  "legal": {
+    "ownerName": "Jan von Stosch",
+    "address": "Dornröschenweg 14, 76189 Karlsruhe, Deutschland ",
+    "email": "janvonstosch@gmail.com",
+    "responsible": "Jan von Stosch",
+    "projectNote": "Neudarmstadt ist ein privates/communitybasiertes Second-Life-Projekt und steht nicht in offizieller Verbindung zu Linden Lab."
+  }
+}
