@@ -51,3 +51,14 @@ RECHTLICHE SEITEN:
 - Die rechtlichen Angaben können im Backend unter "Rechtliches" bearbeitet werden.
 - Bitte unbedingt vollständigen Namen, ladungsfähige Anschrift und E-Mail eintragen.
 - Dies ist keine Rechtsberatung, sondern eine technische Umsetzung mit Mustertexten.
+
+
+ERWEITERUNG V1: Rechtstexte editierbar, News, Besucherzähler, Upload, Eventfilter, DE/EN, Backups, SL-Status API.
+
+
+ONLINE/OFFLINE SCHALTER:
+- Im Backend gibt es jetzt den Bereich "Webseite online/offline".
+- Online = normale Webseite sichtbar.
+- Offline = Besucher sehen eine Wartungsseite.
+- Das Backend bleibt weiterhin erreichbar unter /admin.html.
+- Nach Änderung bitte "Alles speichern" drücken.

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Neudarmstadt offline</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="hero" style="background-image:url('assets/landing.png')">
+  <div class="hero-content">
+    <img class="logo" src="assets/logo.png" alt="Neudarmstadt">
+    <div class="subtitle">Wartungsmodus</div>
+    <h1 id="offlineTitle">Neudarmstadt ist gerade offline</h1>
+    <p class="welcome" id="offlineText">Wir arbeiten gerade an der Webseite. Bitte schau später wieder vorbei.</p>
+  </div>
+</main>
+<script>
+fetch('/api/data').then(r=>r.json()).then(d=>{
+  if(d.siteStatus){
+    document.getElementById('offlineTitle').textContent=d.siteStatus.offlineTitle||'Neudarmstadt ist gerade offline';
+    document.getElementById('offlineText').textContent=d.siteStatus.offlineText||'Wir arbeiten gerade an der Webseite. Bitte schau später wieder vorbei.';
+  }
+});
+</script>
+</body>
+</html>

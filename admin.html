@@ -1,82 +1,115 @@
-<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Backend Neudarmstadt</title><link rel="stylesheet" href="style.css"></head><body>
-<div class="nav"><a href="index.html">Home</a><a href="events.html">Events</a><a href="vermietung.html">Vermietung</a><a href="galerie.html">Galerie</a></div>
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Backend Neudarmstadt</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+<a href="index.html">Home</a>
+<a href="events.html">Events</a>
+<a href="vermietung.html">Vermietung</a>
+<a href="galerie.html">Galerie</a>
+<a href="news.html">News</a>
+</div>
+
 <div class="admin-wrap">
 <h1>Backend Neudarmstadt</h1>
-<div id="login" class="admin-panel"><h2>Login</h2><input id="user" placeholder="Benutzername"><input id="pass" type="password" placeholder="Passwort"><button onclick="login()">Einloggen</button><p id="loginMsg"></p></div>
-<div id="admin" class="hidden">
-<button onclick="saveAll()">Alles speichern</button><button onclick="logout()">Ausloggen</button><p id="msg"></p>
+
+<div id="loginBox" class="admin-panel">
+<h2>Login</h2>
+<label>Benutzername</label>
+<input id="loginUser" value="admin">
+<label>Passwort</label>
+<input id="loginPass" type="password" placeholder="Passwort">
+<button id="loginButton" type="button">Einloggen</button>
+<p id="loginStatus" class="small"></p>
+</div>
+
+<div id="adminBox" class="hidden">
+<button id="saveButton" type="button">Alles speichern</button>
+<button id="logoutButton" type="button">Ausloggen</button>
+<button id="backupButton" type="button">Backup erstellen</button>
+<p id="saveStatus"></p>
+
 <div class="admin-panel">
 <h2>Passwort ändern</h2>
 <label>Benutzername</label>
 <input id="newUsername" placeholder="admin">
 <label>Altes Passwort</label>
-<input id="oldPassword" type="password" placeholder="Altes Passwort">
+<input id="oldPassword" type="password">
 <label>Neues Passwort</label>
-<input id="newPassword" type="password" placeholder="Neues Passwort">
-<button onclick="changePassword()">Passwort speichern</button>
-<p id="passwordMsg" class="small"></p>
+<input id="newPassword" type="password">
+<button id="passwordButton" type="button">Passwort speichern</button>
+<p id="passwordStatus" class="small"></p>
 </div>
 
 <div class="admin-panel">
-<h2>Rechtliches</h2>
-<label>Name / Anbieter</label>
-<input id="legalOwner" placeholder="Vollständiger Name oder Betreiber">
-<label>Anschrift</label>
-<textarea id="legalAddress" placeholder="Straße, PLZ Ort, Land"></textarea>
-<label>E-Mail</label>
-<input id="legalEmail" placeholder="kontakt@example.de">
-<label>Verantwortlich für den Inhalt</label>
-<input id="legalResponsible" placeholder="Name der verantwortlichen Person">
-<label>Second-Life-Hinweis</label>
-<textarea id="legalProjectNote"></textarea>
-<p class="small">Diese Angaben erscheinen im Impressum, Datenschutz und Kontaktbereich.</p>
+<h2>Bild hochladen</h2>
+<input id="uploadFile" type="file" accept="image/*">
+<button id="uploadButton" type="button">Bild hochladen</button>
+<p id="uploadStatus" class="small"></p>
+<input id="uploadedPath" readonly placeholder="Bildpfad erscheint hier">
 </div>
-<div class="admin-panel"><h2>Landingpage</h2><label>Titel</label><input id="siteTitle"><label>Untertitel</label><input id="siteSubtitle"><label>Willkommenstext</label><textarea id="siteWelcome"></textarea><label>Logo Pfad</label><input id="siteLogo"><label>Hintergrundbild Pfad</label><input id="siteHero"><p class="small">Bilder liegen im Ordner assets. Beispiel: assets/logo.png</p></div>
-<div class="admin-panel"><h2>Linkbilder</h2><div id="cards"></div></div>
-<div class="admin-panel"><h2>Events</h2><button onclick="addEvent()">Event hinzufügen</button><div id="events"></div></div>
-<div class="admin-panel"><h2>Vermietung</h2><button onclick="addRental()">Vermietung hinzufügen</button><div id="rentals"></div></div>
-<div class="admin-panel"><h2>Galerie</h2><button onclick="addGallery()">Galeriebild hinzufügen</button><div id="gallery"></div></div>
-<div class="admin-panel"><h2>Nachrichten</h2><button onclick="renderMessages()">Aktualisieren</button><div id="messages" class="message-list"></div></div><div class="admin-panel"><h2>Verantwortliche</h2><p class="small">Gruppe: mayor = Bürgermeister/Bürgermeisterin oben, council = Stadträte darunter. UUID und Online-Status sind bearbeitbar.</p><div id="people"></div></div>
-</div></div>
-<script>
-let data=null;
-async function check(){let s=await fetch('/api/status').then(r=>r.json()); if(s.loggedIn){document.getElementById('login').classList.add('hidden');document.getElementById('admin').classList.remove('hidden');await load();}}
-async function login(){let r=await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:user.value,password:pass.value})}); if(r.ok){await check()} else loginMsg.textContent='Login falsch';}
-async function logout(){await fetch('/api/logout',{method:'POST'}); location.reload();}
-async function load(){data=await fetch('/api/data').then(r=>r.json()); fill();}
-function esc(v){return (v||'').replaceAll('"','&quot;')}
-function fill(){
- if(data.auth && data.auth.username){newUsername.value=data.auth.username;} if(data.legal){legalOwner.value=data.legal.ownerName||'';legalAddress.value=data.legal.address||'';legalEmail.value=data.legal.email||'';legalResponsible.value=data.legal.responsible||'';legalProjectNote.value=data.legal.projectNote||'';} siteTitle.value=data.site.title; siteSubtitle.value=data.site.subtitle; siteWelcome.value=data.site.welcome; siteLogo.value=data.site.logo; siteHero.value=data.site.heroImage;
- cards.innerHTML=data.cards.map((c,i)=>`<div class="admin-panel"><h3>Linkbild ${i+1}</h3><input onchange="data.cards[${i}].title=this.value" value="${esc(c.title)}"><textarea onchange="data.cards[${i}].text=this.value">${c.text||''}</textarea><input onchange="data.cards[${i}].image=this.value" value="${esc(c.image)}"><input onchange="data.cards[${i}].link=this.value" value="${esc(c.link)}"></div>`).join('');
- renderEvents(); renderRentals(); renderGallery(); renderPeople(); renderMessages();
-}
-function renderEvents(){events.innerHTML=data.events.map((e,i)=>`<div class="admin-panel"><input type="date" onchange="data.events[${i}].date=this.value" value="${esc(e.date)}"><input onchange="data.events[${i}].time=this.value" value="${esc(e.time)}"><input onchange="data.events[${i}].title=this.value" value="${esc(e.title)}"><textarea onchange="data.events[${i}].description=this.value">${e.description||''}</textarea><input onchange="data.events[${i}].image=this.value" value="${esc(e.image)}"><button class="danger" onclick="data.events.splice(${i},1);renderEvents()">Löschen</button></div>`).join('')}
-function renderRentals(){rentals.innerHTML=data.rentals.map((e,i)=>`<div class="admin-panel"><input onchange="data.rentals[${i}].title=this.value" value="${esc(e.title)}"><input onchange="data.rentals[${i}].price=this.value" value="${esc(e.price)}"><textarea onchange="data.rentals[${i}].description=this.value">${e.description||''}</textarea><input onchange="data.rentals[${i}].image=this.value" value="${esc(e.image)}"><button class="danger" onclick="data.rentals.splice(${i},1);renderRentals()">Löschen</button></div>`).join('')}
-function renderGallery(){gallery.innerHTML=data.gallery.map((e,i)=>`<div class="admin-panel"><input onchange="data.gallery[${i}].title=this.value" value="${esc(e.title)}"><textarea onchange="data.gallery[${i}].description=this.value">${e.description||''}</textarea><input onchange="data.gallery[${i}].image=this.value" value="${esc(e.image)}"><button class="danger" onclick="data.gallery.splice(${i},1);renderGallery()">Löschen</button></div>`).join('')}
-function renderPeople(){people.innerHTML=data.people.map((p,i)=>`<div class="admin-panel"><input onchange="data.people[${i}].name=this.value" value="${esc(p.name)}"><input onchange="data.people[${i}].role=this.value" value="${esc(p.role)}"><select onchange="data.people[${i}].group=this.value"><option value="mayor" ${p.group==='mayor'?'selected':''}>Bürgermeister-Reihe</option><option value="council" ${p.group==='council'?'selected':''}>Stadtrat-Reihe</option></select><textarea onchange="data.people[${i}].description=this.value">${p.description||''}</textarea><label>Avatar UUID</label><input onchange="data.people[${i}].uuid=this.value" value="${esc(p.uuid||'')}"><label>Status</label><select onchange="data.people[${i}].online=this.value==='true'"><option value="false" ${p.online?'':'selected'}>Offline</option><option value="true" ${p.online?'selected':''}>Online</option></select><input onchange="data.people[${i}].image=this.value" value="${esc(p.image)}"></div>`).join('')}
-function renderMessages(){messages.innerHTML=(data.messages||[]).map((m,i)=>`<div class="message-card"><strong>An: ${m.recipientName||''}</strong><br><span class="small">${m.date||''}</span><p><b>Von:</b> ${m.sender||'Unbekannt'} ${m.contact?`(${m.contact})`:''}</p><p>${m.text||''}</p><button class="danger" onclick="data.messages.splice(${i},1);renderMessages()">Nachricht löschen</button></div>`).join('') || '<p class="small">Noch keine Nachrichten vorhanden.</p>'}
-function addEvent(){data.events.push({date:'',time:'',title:'Neues Event',description:'',image:'assets/landing.png'});renderEvents()}
-function addRental(){data.rentals.push({title:'Neue Vermietung',price:'',description:'',image:'assets/landing.png'});renderRentals()}
-function addGallery(){data.gallery.push({title:'Neues Bild',description:'',image:'assets/landing.png'});renderGallery()}
-async function saveAll(){
- data.legal={ownerName:legalOwner.value,address:legalAddress.value,email:legalEmail.value,responsible:legalResponsible.value,projectNote:legalProjectNote.value}; data.site.title=siteTitle.value; data.site.subtitle=siteSubtitle.value; data.site.welcome=siteWelcome.value; data.site.logo=siteLogo.value; data.site.heroImage=siteHero.value;
- let r=await fetch('/api/data',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
- msg.textContent=r.ok?'Gespeichert!':'Fehler beim Speichern: '+(await r.text());
-}
 
-async function changePassword(){
-  const body={username:newUsername.value,oldPassword:oldPassword.value,newPassword:newPassword.value};
-  let r=await fetch('/api/change-password',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
-  let t=await r.json().catch(()=>({error:'Unbekannter Fehler'}));
-  if(r.ok){
-    passwordMsg.textContent='Passwort wurde geändert. Bitte neues Passwort beim nächsten Login verwenden.';
-    oldPassword.value='';
-    newPassword.value='';
-    if(!data.auth) data.auth={};
-    data.auth.username=newUsername.value;
-  }else{
-    passwordMsg.textContent='Fehler: '+(t.error||'Passwort konnte nicht geändert werden');
-  }
-}
-check();
-</script></body></html>
+<div class="admin-panel">
+<h2>Backups</h2>
+<button id="backupListButton" type="button">Backups anzeigen</button>
+<div id="backupList" class="backup-list small"></div>
+</div>
+
+<div class="admin-panel">
+<h2>Besucherzähler</h2>
+<p>Gesamt: <b id="visitorTotal">0</b></p>
+</div>
+
+<div class="admin-panel">
+<h2>Webseite online/offline</h2>
+<label>Status</label>
+<select id="siteOnline">
+<option value="true">Online</option>
+<option value="false">Offline / Wartungsmodus</option>
+</select>
+<label>Offline-Überschrift</label>
+<input id="offlineTitle" placeholder="Neudarmstadt ist gerade offline">
+<label>Offline-Text</label>
+<textarea id="offlineText" placeholder="Wir arbeiten gerade an der Webseite."></textarea>
+<p class="small">Wenn Offline gewählt ist, sehen Besucher nur die Wartungsseite. Das Backend bleibt erreichbar.</p>
+</div>
+
+
+<div class="admin-panel">
+<h2>Rechtstexte</h2>
+<label>E-Mail</label>
+<input id="legalEmail">
+<label>Impressum kompletter Text</label>
+<textarea id="legalImpressum" style="min-height:220px"></textarea>
+<label>Datenschutzerklärung kompletter Text</label>
+<textarea id="legalPrivacy" style="min-height:260px"></textarea>
+</div>
+
+<div class="admin-panel">
+<h2>Landingpage</h2>
+<label>Titel</label><input id="siteTitle">
+<label>Untertitel</label><input id="siteSubtitle">
+<label>Willkommenstext</label><textarea id="siteWelcome"></textarea>
+<label>Logo Pfad</label><input id="siteLogo">
+<label>Hintergrundbild Pfad</label><input id="siteHero">
+</div>
+
+<div class="admin-panel"><h2>Linkbilder</h2><div id="cardsBox"></div></div>
+<div class="admin-panel"><h2>News</h2><button id="addNewsButton" type="button">News hinzufügen</button><div id="newsBox"></div></div>
+<div class="admin-panel"><h2>Events</h2><button id="addEventButton" type="button">Event hinzufügen</button><div id="eventsBox"></div></div>
+<div class="admin-panel"><h2>Vermietung</h2><button id="addRentalButton" type="button">Vermietung hinzufügen</button><div id="rentalsBox"></div></div>
+<div class="admin-panel"><h2>Galerie</h2><button id="addGalleryButton" type="button">Galeriebild hinzufügen</button><div id="galleryBox"></div></div>
+<div class="admin-panel"><h2>Nachrichten</h2><button id="refreshMessagesButton" type="button">Aktualisieren</button><div id="messagesBox" class="message-list"></div></div>
+<div class="admin-panel"><h2>Verantwortliche</h2><div id="peopleBox"></div></div>
+
+</div>
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>

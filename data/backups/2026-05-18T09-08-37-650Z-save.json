@@ -142,11 +142,11 @@
     "privacyText": "Datenschutzerklärung\n\nBitte hier die vollständige Datenschutzerklärung eintragen."
   },
   "visitors": {
-    "total": 1,
+    "total": 8,
     "today": {
-      "2026-05-18": 1
+      "2026-05-18": 8
     },
-    "lastVisit": "2026-05-18T10:33:00.428Z"
+    "lastVisit": "2026-05-18T08:18:46.281Z"
   },
   "news": [
     {
@@ -157,10 +157,5 @@
       "text_en": "Latest news from Neudarmstadt will appear here.",
       "image": "assets/landing.png"
     }
-  ],
-  "siteStatus": {
-    "online": true,
-    "offlineTitle": "Neudarmstadt ist gerade offline",
-    "offlineText": "Wir arbeiten gerade an der Webseite. Bitte schau später wieder vorbei."
-  }
+  ]
 }

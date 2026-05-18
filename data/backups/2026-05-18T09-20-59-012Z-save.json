@@ -10,7 +10,7 @@
     {
       "title": "Events",
       "text": "Alle Veranstaltungen und Termine in Neudarmstadt.",
-      "image": "assets/landing.png",
+      "image": "assets/uploads/1779095283460-Eventkalender_bild__Neudarmstadt.png",
       "link": "events.html"
     },
     {
@@ -32,7 +32,7 @@
       "time": "20:00",
       "title": "Stadtabend in Neudarmstadt",
       "description": "Gemütlicher Abend mit Musik, Gesprächen und Gästen.",
-      "image": "assets/landing.png",
+      "image": "assets/uploads/1779095283460-Eventkalender_bild__Neudarmstadt.png",
       "title_en": "Stadtabend in Neudarmstadt",
       "description_en": "Gemütlicher Abend mit Musik, Gesprächen und Gästen.",
       "location": "Neudarmstadt",
@@ -142,11 +142,11 @@
     "privacyText": "Datenschutzerklärung\n\nBitte hier die vollständige Datenschutzerklärung eintragen."
   },
   "visitors": {
-    "total": 1,
+    "total": 11,
     "today": {
-      "2026-05-18": 1
+      "2026-05-18": 11
     },
-    "lastVisit": "2026-05-18T10:33:00.428Z"
+    "lastVisit": "2026-05-18T09:19:40.388Z"
   },
   "news": [
     {
@@ -157,10 +157,5 @@
       "text_en": "Latest news from Neudarmstadt will appear here.",
       "image": "assets/landing.png"
     }
-  ],
-  "siteStatus": {
-    "online": true,
-    "offlineTitle": "Neudarmstadt ist gerade offline",
-    "offlineText": "Wir arbeiten gerade an der Webseite. Bitte schau später wieder vorbei."
-  }
+  ]
 }

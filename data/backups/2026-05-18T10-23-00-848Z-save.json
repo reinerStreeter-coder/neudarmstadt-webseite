@@ -10,7 +10,7 @@
     {
       "title": "Events",
       "text": "Alle Veranstaltungen und Termine in Neudarmstadt.",
-      "image": "assets/landing.png",
+      "image": "assets/uploads/1779098956286-Eventkalender_bild__Neudarmstadt.png",
       "link": "events.html"
     },
     {
@@ -127,7 +127,17 @@
     }
   ],
   "statusSecret": "neudarmstadt-status-2026",
-  "messages": [],
+  "messages": [
+    {
+      "id": "1779098878774",
+      "date": "2026-05-18T10:07:58.774Z",
+      "recipientUuid": "5258e13e-54b7-4e8a-bcf2-1f175eae95cb",
+      "recipientName": "Reiner Streeter",
+      "sender": "Test",
+      "contact": "janvonstosch@gmail.com",
+      "text": "hallo das ist ein test"
+    }
+  ],
   "auth": {
     "username": "admin",
     "password": "neudarmstadt"
@@ -142,11 +152,11 @@
     "privacyText": "Datenschutzerklärung\n\nBitte hier die vollständige Datenschutzerklärung eintragen."
   },
   "visitors": {
-    "total": 1,
+    "total": 2,
     "today": {
-      "2026-05-18": 1
+      "2026-05-18": 2
     },
-    "lastVisit": "2026-05-18T10:33:00.428Z"
+    "lastVisit": "2026-05-18T10:10:15.190Z"
   },
   "news": [
     {
@@ -157,10 +167,5 @@
       "text_en": "Latest news from Neudarmstadt will appear here.",
       "image": "assets/landing.png"
     }
-  ],
-  "siteStatus": {
-    "online": true,
-    "offlineTitle": "Neudarmstadt ist gerade offline",
-    "offlineText": "Wir arbeiten gerade an der Webseite. Bitte schau später wieder vorbei."
-  }
+  ]
 }
